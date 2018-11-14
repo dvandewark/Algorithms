@@ -3,6 +3,8 @@
 void mergeSort(int toSort[], int min, int max);
 void merge(int arr[], int min1, int max1, int min2, int max2);
 
+
+//a little bugged, sometimes a large negative number is put in
 int main() {
 	
 	int myArray[] = {2,5,1,6,23,653,23423,76,4,23,67,21,5,3,0,1,2,5,2,2};
@@ -52,7 +54,7 @@ void merge(int arr[], int min1, int max1, int min2, int max2) {
 
 	//merge the two subarrays into a sorted temp array
 	while (i <= max1 && j<= max2) {
-		if (arr[i]<arr[j]) {
+		if (arr[i]<=arr[j]) {
 			temp[k] = arr[i];
             k++;
             i++;
