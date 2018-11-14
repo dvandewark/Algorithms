@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <time.h>
 
 void quickSort(int arr[], int min, int max);
 int part(int arr[], int min, int max);
 
 //has the same bug as mergeSort, seems like some kind of memory leak?
 int main() {
-	int myArray[] = {2,5,1,6,23,653,23423,76,4,23,67,21,5,3,0,1,2,5,2,2};
+	int myArray[] = {2,5,1,6,23,653,23423,76,4,23,67,21,5,3,-1,1,2,5,0,2};
 	int numEls = sizeof(myArray) / sizeof(int);
 
 	printf("Before sort: ");
@@ -14,14 +15,19 @@ int main() {
 		printf("%d ", myArray[i]);
 	}
 
+    clock_t start = clock();
+
 	quickSort(myArray, 0, numEls);
+
+    clock_t end = clock();
 
 	printf("\nAfter sort: ");
 	for (int i = 0; i < numEls; i++) {
 		printf("%d ", myArray[i]);
 	}
 	
-	printf("\n");
+    double timeTaken = (double)(end-start) / CLOCKS_PER_SEC;
+	printf("\nTaking %f seconds\n", timeTaken);
 
     return 0;
 }

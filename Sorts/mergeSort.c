@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <time.h>
 
 void mergeSort(int toSort[], int min, int max);
 void merge(int arr[], int min1, int max1, int min2, int max2);
@@ -7,7 +8,7 @@ void merge(int arr[], int min1, int max1, int min2, int max2);
 //a little bugged, sometimes a large negative number is put in
 int main() {
 	
-	int myArray[] = {2,5,1,6,23,653,23423,76,4,23,67,21,5,3,0,1,2,5,2,2};
+	int myArray[] = {2,5,1,6,23,653,23423,76,4,23,67,21,5,3,-1,1,2,5,0,2};
 	int numEls = sizeof(myArray) / sizeof(int);
 
 	printf("Before sort: ");
@@ -15,14 +16,19 @@ int main() {
 		printf("%d ", myArray[i]);
 	}
 
+    clock_t start = clock();
+
 	mergeSort(myArray, 0, numEls);
+
+    clock_t end = clock();
 
 	printf("\nAfter sort: ");
 	for (int i = 0; i < numEls; i++) {
 		printf("%d ", myArray[i]);
 	}
 	
-	printf("\n");
+    double timeTaken = (double)(end-start) / CLOCKS_PER_SEC;
+	printf("\nTaking %f seconds\n", timeTaken);
 	return 0;
 }
 
